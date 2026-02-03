@@ -278,7 +278,7 @@ launchctl unload ~/Library/LaunchAgents/com.intelforge.pipeline.plist
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.	
+Contributions are welcome! Please contribute by submitting a pull request or opening an issue.
 
 ## License
 
