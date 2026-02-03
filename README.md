@@ -34,30 +34,38 @@ No exploitation, intrusion, targeting guidance, or aggressive scanning.
 
 ### Install deps
 
+```
 perl Makefile.PL
 make
+```
+
 
 ## Run it
+```
 perl Makefile.PL
 make
-
+```
 # Ensure sample exists:
+```
 mkdir -p docs/samples artifacts
 echo "test indicator: example.com 1.1.1.1 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" > docs/samples/sample1.txt
 
 bin/intelforge run --config config/sample.yml --artifacts artifacts
-
+```
 # View output
+```
 cat artifacts/indicators.jsonl
+```
 artifacts/report.md
 
 ## Next upgrades (still Perl-first) are:
+```
 	1.	RSS ingestion (safe, rate-limited, cached)
 	2.	Evidence windows (store small context around each match)
 	3.	Source reliability profiles (config-driven confidence)
 	4.	SQLite storage (optional) when JSONL gets too big
 	5.	STIX export for interoperability
-
+```
 
 # IntelForge — Automation, Scheduling, and Fixes
 
@@ -71,59 +79,59 @@ Everything below is ready to **copy & paste**.
 ## 1) Manual run
 
 Build the project:
-
+```
 
 perl Makefile.PL
 make
-
+```
 
 #
 
 Run manually:
 
-
+```
 perl Makefile.PL
 Makefile
-
+```
 Run bash manually:
-
+```
 chmod +x run-intelforge.sh
 ./run-intelforge.sh
-
+```
 #
 
 Run with explicit config:
-
+```
 ./run-intelforge.sh config/sample.yml
-
+```
 
 #
 
 Each run produces a timestamped directory:
-
+```
 	•	artifacts/run-<UTC_TIMESTAMP>/raw.jsonl
 	•	artifacts/run-<UTC_TIMESTAMP>/iocs.jsonl
 	•	artifacts/run-<UTC_TIMESTAMP>/iocs.norm.jsonl
 	•	artifacts/run-<UTC_TIMESTAMP>/iocs.scored.jsonl
 	•	artifacts/run-<UTC_TIMESTAMP>/report.md
-
+```
 #
 
 Logs are written to
-
+```
 logs/run-<UTC_TIMESTAMP>.log
-
+```
 
 #
 
 2) Cron (Linux + macOS)
-
+```
 crontab -e
-
+```
 Example: run daily at 02:30 (local time):
-
+```
 30 2 * * * /absolute/path/to/intelforge/run-intelforge.sh /absolute/path/to/intelforge/config/sample.yml >> /absolute/path/to/intelforge/logs/cron.log 2>&1
-
+```
 
 NOTES:
 	•	Always use absolute paths.
@@ -135,10 +143,10 @@ NOTES:
 3) systemd — user timer (Arch Linux / Debian-based)
 
 Service file
-
+```
 ~/.config/systemd/user/intelforge.service
-
-
+```
+```
 [Unit]
 Description=IntelForge CTI pipeline (user)
 
@@ -146,12 +154,13 @@ Description=IntelForge CTI pipeline (user)
 Type=oneshot
 WorkingDirectory=%h/path/to/intelforge
 ExecStart=%h/path/to/intelforge/run-intelforge.sh %h/path/to/intelforge/config/sample.yml
-
+```
 
 Timer file
-
+```
 ~/.config/systemd/user/intelforge.timer
-
+```
+```
 [Unit]
 Description=Run IntelForge daily (user)
 
@@ -161,21 +170,22 @@ Persistent=true
 
 [Install]
 WantedBy=default.target
-
+```
 
 Enable:
-
+```
 systemctl --user daemon-reload
 systemctl --user enable --now intelforge.timer
 systemctl --user list-timers | grep intelforge
 journalctl --user -u intelforge.service -n 200 --no-pager
-
+```
 4) systemd — system-wide timer (optional)
 
 Service
-
+```
 /etc/systemd/system/intelforge.service
-
+```
+```
 [Unit]
 Description=IntelForge CTI pipeline (system)
 
@@ -184,11 +194,12 @@ Type=oneshot
 User=felipe
 WorkingDirectory=/absolute/path/to/intelforge
 ExecStart=/absolute/path/to/intelforge/run-intelforge.sh /absolute/path/to/intelforge/config/sample.yml
-
+```
 Timer
-
+```
 /etc/systemd/system/intelforge.timer
-
+```
+```
 [Unit]
 Description=Run IntelForge daily (system)
 
@@ -198,23 +209,24 @@ Persistent=true
 
 [Install]
 WantedBy=timers.target
-
+```
 Enable:
-
+```
 sudo systemctl daemon-reload
 sudo systemctl enable --now intelforge.timer
 sudo systemctl list-timers | grep intelforge
 journalctl -u intelforge.service -n 200 --no-pager
-
+```
 
 #
 
 5) macOS (Intel + Apple Silicon) — launchd
 
 LaunchAgent
-
+```
 ~/Library/LaunchAgents/com.intelforge.pipeline.plist
-
+```
+```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -250,17 +262,17 @@ LaunchAgent
   <true/>
 </dict>
 </plist>
-
+```
 
 
 #
 Load and manage:
 
-
+```
 launchctl load ~/Library/LaunchAgents/com.intelforge.pipeline.plist
 launchctl list | grep intelforge
 launchctl unload ~/Library/LaunchAgents/com.intelforge.pipeline.plist
-
+```
 #
 
 
