@@ -47,9 +47,11 @@ make
 ```
 # Ensure sample exists:
 ```
+
+```
 mkdir -p docs/samples artifacts
 echo "test indicator: example.com 1.1.1.1 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" > docs/samples/sample1.txt
-
+```
 bin/intelforge run --config config/sample.yml --artifacts artifacts
 ```
 # View output
@@ -69,12 +71,7 @@ artifacts/report.md
 
 # IntelForge — Automation, Scheduling, and Fixes
 
-IntelForge is a Perl-first, CLI-driven defensive CTI pipeline.
-This section documents **manual execution**, **automation options**, and **mandatory fixes** required when running directly from the repository.
-
-Everything below is ready to **copy & paste**.
-
----
+IntelForge is designed to be easily integrated into existing toolchains and workflows. Here are some examples of how you can use IntelForge:
 
 ## 1) Manual run
 
