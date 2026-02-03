@@ -273,6 +273,57 @@ LaunchAgent
 
 </select>
 
+
+#
+
+<details>
+<summary>LaunchAgent</summary>
+
+**Path**
+
+```text
+~/Library/LaunchAgents/com.intelforge.pipeline.plist
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.intelforge.pipeline</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/absolute/path/to/intelforge/run-intelforge.sh</string>
+    <string>/absolute/path/to/intelforge/config/sample.yml</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/absolute/path/to/intelforge</string>
+
+  <key>StandardOutPath</key>
+  <string>/absolute/path/to/intelforge/logs/launchd.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/absolute/path/to/intelforge/logs/launchd.err.log</string>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>2</integer>
+    <key>Minute</key>
+    <integer>30</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+</details>
+```
+
+
+
 #
 Load and manage:
 
