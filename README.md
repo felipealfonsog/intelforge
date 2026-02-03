@@ -226,6 +226,7 @@ journalctl -u intelforge.service -n 200 --no-pager
 
 
 LaunchAgent
+
 ```
 ~/Library/LaunchAgents/com.intelforge.pipeline.plist
 ```
@@ -235,7 +236,7 @@ LaunchAgent
 <summary>LaunchAgent</summary>
 <br>
 
-```xml
+```
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
@@ -274,6 +275,7 @@ LaunchAgent
 </plist>
 
 ```
+
 </details>
 
 
