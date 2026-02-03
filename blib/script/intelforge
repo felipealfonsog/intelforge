@@ -1,0 +1,71 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Getopt::Long qw(GetOptions);
+use File::Path qw(make_path);
+use File::Spec;
+
+use IntelForge::Version;
+use IntelForge::Pipeline;
+
+sub usage {
+  print <<"USAGE";
+IntelForge (Perl-first defensive CTI pipeline)
+Version: @{[ IntelForge::Version::VERSION() ]}
+
+Usage:
+  intelforge run --config config/sample.yml
+  intelforge run --config <path> [--artifacts <dir>]
+
+Commands:
+  run     Execute the pipeline: ingest -> extract -> normalize -> rules -> report
+
+Options:
+  --config     Path to YAML config file (required)
+  --artifacts  Output directory for artifacts (default: artifacts)
+  --help       Show this help
+USAGE
+}
+
+my $help = 0;
+GetOptions('help' => \$help) or do { usage(); exit 2; };
+
+my $cmd = shift @ARGV // '';
+if ($help || !$cmd) { usage(); exit($help ? 0 : 2); }
+
+if ($cmd eq 'run') {
+  my $config_path = '';
+  my $artifacts_dir = 'artifacts';
+
+  GetOptions(
+    'config=s'    => \$config_path,
+    'artifacts=s' => \$artifacts_dir,
+  ) or do { usage(); exit 2; };
+
+  if (!$config_path) {
+    print STDERR "ERROR: --config is required\n";
+    exit 2;
+  }
+
+  make_path($artifacts_dir) unless -d $artifacts_dir;
+
+  my $pipeline = IntelForge::Pipeline->new(
+    config_path  => $config_path,
+    artifacts_dir => $artifacts_dir,
+  );
+
+  my $ok = eval { $pipeline->run(); 1 };
+  if (!$ok) {
+    my $err = $@ || 'Unknown error';
+    print STDERR "ERROR: pipeline failed: $err\n";
+    exit 1;
+  }
+
+  print "OK: pipeline finished successfully\n";
+  exit 0;
+}
+
+print STDERR "ERROR: unknown command '$cmd'\n";
+usage();
+exit 2;

@@ -1,0 +1,4 @@
+Can't locate IntelForge/Version.pm in @INC (you may need to install the IntelForge::Version module) (@INC entries checked: /opt/homebrew/opt/perl/lib/perl5/site_perl/5.42/darwin-thread-multi-2level /opt/homebrew/opt/perl/lib/perl5/site_perl/5.42 /opt/homebrew/opt/perl/lib/perl5/5.42/darwin-thread-multi-2level /opt/homebrew/opt/perl/lib/perl5/5.42 /opt/homebrew/lib/perl5/site_perl/5.42) at /Users/felipe/Sites/Development/intelforge/bin/intelforge line 9.
+BEGIN failed--compilation aborted at /Users/felipe/Sites/Development/intelforge/bin/intelforge line 9.
+IntelForge status: FAILED (exit code: 2)
+See log: /Users/felipe/Sites/Development/intelforge/logs/run-20260203T122323Z.log

@@ -1,0 +1,40 @@
+tree (v0.1 scaffold)
+
+intelforge/
+  README.md
+  LICENSE
+  Makefile.PL
+
+  bin/
+    intelforge
+
+  lib/
+    IntelForge/
+      Version.pm
+      Util.pm
+      Types.pm
+      Config.pm
+      Ingest.pm
+      Extract.pm
+      Normalize.pm
+      Rules.pm
+      Report.pm
+      Pipeline.pm
+
+  schemas/
+    ioc.schema.json
+
+  docs/
+    ETHICAL_USE.md
+    THREAT_MODEL.md
+    SOURCES.md
+
+  t/
+    00-load.t
+    pipeline-smoke.t
+
+  config/
+    sample.yml
+
+  artifacts/
+    .gitkeep

@@ -1,0 +1,59 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use FindBin qw($Bin);
+use lib "$Bin/../lib";
+
+use Getopt::Long qw(GetOptions);
+use File::Path qw(make_path);
+use File::Spec;
+
+use IntelForge::Version;
+use IntelForge::Pipeline;
+
+sub usage {
+  print <<"USAGE";
+IntelForge (Perl-first defensive CTI pipeline)
+Version: @{[ IntelForge::Version::VERSION() ]}
+
+Usage:
+  intelforge run --config <config.yml> [--artifacts <dir>]
+
+Options:
+  --config     Path to YAML config file (required)
+  --artifacts  Output directory (default: artifacts)
+  --help       Show this help
+USAGE
+}
+
+my $help = 0;
+GetOptions('help' => \$help) or do { usage(); exit 2; };
+
+my $cmd = shift @ARGV // '';
+if ($help || !$cmd) { usage(); exit($help ? 0 : 2); }
+
+if ($cmd eq 'run') {
+  my $config = '';
+  my $artifacts = 'artifacts';
+
+  GetOptions(
+    'config=s'    => \$config,
+    'artifacts=s' => \$artifacts,
+  ) or die "Invalid options\n";
+
+  die "--config is required\n" unless $config;
+
+  make_path($artifacts) unless -d $artifacts;
+
+  my $pipeline = IntelForge::Pipeline->new(
+    config_path   => $config,
+    artifacts_dir => $artifacts,
+  );
+
+  $pipeline->run();
+  exit 0;
+}
+
+usage();
+exit 2;
