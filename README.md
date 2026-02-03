@@ -231,6 +231,7 @@ LaunchAgent
 ```
 ~/Library/LaunchAgents/com.intelforge.pipeline.plist
 ```
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
@@ -270,6 +271,7 @@ LaunchAgent
 ```
 
 </select>
+
 #
 Load and manage:
 
