@@ -223,9 +223,7 @@ journalctl -u intelforge.service -n 200 --no-pager
 
 5) macOS (Intel + Apple Silicon) — launchd
 
-<select>
-<summary>LaunchAgent</summary>
-<br>
+
 
 LaunchAgent
 ```
@@ -233,10 +231,9 @@ LaunchAgent
 ```
 
 
-<details>
+<select>
 <summary>LaunchAgent</summary>
-
-**Path**
+<br>
 
 ```xml
 
@@ -277,8 +274,8 @@ LaunchAgent
 </plist>
 
 ```
-
 </details>
+
 
 
 
