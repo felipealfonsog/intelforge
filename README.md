@@ -33,7 +33,7 @@ No exploitation, intrusion, targeting guidance, or aggressive scanning.
 ## Quick start
 
 ### Install deps
-```bash
+
 perl Makefile.PL
 make
 
@@ -72,7 +72,7 @@ Everything below is ready to **copy & paste**.
 
 Build the project:
 
-```bash
+
 perl Makefile.PL
 make
 
@@ -81,7 +81,7 @@ make
 
 Run manually:
 
-```bash
+
 perl Makefile.PL
 Makefile
 
