@@ -1,0 +1,6 @@
+project:
+  name: IntelForge
+
+ingest:
+  local_files:
+    - docs/samples/sample1.txt
