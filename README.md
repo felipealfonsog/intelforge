@@ -232,9 +232,6 @@ LaunchAgent
 ```
 
 
-<select>
-<summary>LaunchAgent</summary>
-<br>
 
 ```
 
@@ -276,7 +273,6 @@ LaunchAgent
 
 ```
 
-</details>
 
 
 
