@@ -223,6 +223,8 @@ journalctl -u intelforge.service -n 200 --no-pager
 
 5) macOS (Intel + Apple Silicon) — launchd
 
+<select>
+<summary>LaunchAgent</summary>
 LaunchAgent
 ```
 ~/Library/LaunchAgents/com.intelforge.pipeline.plist
@@ -265,7 +267,7 @@ LaunchAgent
 </plist>
 ```
 
-
+</select>
 #
 Load and manage:
 
