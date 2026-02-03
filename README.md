@@ -225,6 +225,8 @@ journalctl -u intelforge.service -n 200 --no-pager
 
 <select>
 <summary>LaunchAgent</summary>
+<br>
+
 LaunchAgent
 ```
 ~/Library/LaunchAgents/com.intelforge.pipeline.plist
