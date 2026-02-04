@@ -1,14 +1,14 @@
-## intelforge
+#### intelforge
 Defensive CTI pipeline built in Perl. IntelForge is a Perl-first, CLI-driven defensive cyber threat intelligence (CTI) pipeline that ingests public sources, extracts and normalizes indicators, applies lightweight rules and scoring, and produces auditable artifacts (JSONL + reports).
 
 #
 
-## Description
+#### Description
 
 IntelForge is an open-source, Perl-first defensive cyber threat intelligence (CTI) pipeline designed for analysts and engineers who want a reproducible, auditable, and automation-friendly workflow. IntelForge ingests authorized public sources (RSS/Atom feeds, local files, and curated text inputs), extracts indicators of compromise (IOCs) such as domains, IP addresses, and file hashes, and normalizes them into a strict JSONL format with provenance and timestamps. It then applies a rules layer to tag and score indicators based on evidence strength and source reliability, generating artifacts suitable for downstream tooling (SIEM, case management, data lakes) while keeping the core pipeline transparent and testable.
 IntelForge is explicitly defensive: it focuses on collection, normalization, correlation signals, and reporting—no exploitation, targeting guidance, or intrusive scanning. The CLI is the product: if optional UI/report tooling is added later, it will remain non-required and strictly downstream from the Perl core outputs.
 
-## Features
+#### Features
 
 
 - **Perl-first design.** Built in Perl with a focus on maintainability, testability, and transparency.
@@ -20,19 +20,19 @@ IntelForge is explicitly defensive: it focuses on collection, normalization, cor
 - **Defensive focus.** Emphasizes collection, normalization, correlation signals, and reporting without aggressive tactics
 - **Open source.** Fully open-source under the MIT License for community collaboration and transparency.
 
-## Overview
+#### Overview
 **Perl-first defensive CTI pipeline (CLI).**
 
 IntelForge ingests authorized sources (v0.1 starts with local files), extracts IOCs (domains, IPs, SHA256),
 normalizes and deduplicates them, applies lightweight defensive rules and scoring, and produces auditable artifacts.
 
-## Defensive-only
+#### Defensive-only
 IntelForge is built for defensive cyber threat intelligence: collection, normalization, signals, and reporting.
 No exploitation, intrusion, targeting guidance, or aggressive scanning.
 
-## Quick start
+#### Quick start
 
-### Install deps
+#### Install deps
 
 ```
 perl Makefile.PL
@@ -40,16 +40,16 @@ make
 ```
 
 
-## Run it
+#### Run it
 ```
 perl Makefile.PL
 make
 ```
-# Ensure sample exists:
+#### Ensure sample exists:
 ```
 mkdir -p docs/samples
 ```
-# Create sample input file:
+#### Create sample input file:
 
 ```
 mkdir -p docs/samples artifacts
@@ -58,13 +58,13 @@ echo "test indicator: example.com 1.1.1.1 0123456789abcdef0123456789abcdef012345
 ```
 bin/intelforge run --config config/sample.yml --artifacts artifacts
 ```
-# View output
+#### View output
 ```
 cat artifacts/indicators.jsonl
 ```
 artifacts/report.md
 
-## Next upgrades (still Perl-first) are:
+#### Next upgrades (still Perl-first) are:
 ```
 	1.	RSS ingestion (safe, rate-limited, cached)
 	2.	Evidence windows (store small context around each match)
@@ -73,11 +73,11 @@ artifacts/report.md
 	5.	STIX export for interoperability
 ```
 
-# IntelForge — Automation, Scheduling, and Fixes
+#### IntelForge — Automation, Scheduling, and Fixes
 
 IntelForge is designed to be easily integrated into existing toolchains and workflows. Here are some examples of how you can use IntelForge:
 
-## 1) Manual run
+#### 1) Manual run
 
 Build the project:
 ```
@@ -289,15 +289,15 @@ launchctl unload ~/Library/LaunchAgents/com.intelforge.pipeline.plist
 #
 
 
-## Contributing
+#### Contributing
 
 Contributions are welcome! Please contribute by submitting a pull request or opening an issue.
 
-## License
+#### License
 
 IntelForge is licensed under the [BSD3-clause](LICENSE).
 
-## Contact
+#### Contact
 
 If you have any questions or feedback, please reach out to us at [felipe@gnlz.cl](mailto:felipe@gnlz.cl).
 
